@@ -76,7 +76,6 @@ class Find extends React.Component{
 													<div
 														{...getSuggestionItemProps(suggestion, {
 														className,
-														style,
 														})}
 													>
 														<span>{suggestion.description}</span>
