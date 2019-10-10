@@ -23,7 +23,8 @@ class Login extends React.Component{
         this.submit = this.submit.bind(this);
         this.cadForm = this.cadForm.bind(this);
         this.openCad = this.openCad.bind(this);
-        this.back = this.back.bind(this);
+		this.back = this.back.bind(this);
+		this.forgetPass = this.forgetPass.bind(this);
     }
 
     back(){
@@ -38,7 +39,16 @@ class Login extends React.Component{
                 
             }
         });
-    }
+	}
+	
+	forgetPass(){
+		const auth = this.props.firebase.auth();
+		auth.sendPasswordResetEmail(this.state.email).then(function() {
+			alert("foi");
+		  }).catch(function(error) {
+			// An error happened.
+		  });
+	}
 
     submit(e){
         if (e.key === 'Enter')
@@ -84,7 +94,9 @@ class Login extends React.Component{
                                         onKeyPress={this.submit}
                                         placeholder="Password"/>
                                 </Form.Group>
-
+								<Form.Group data-control="password">
+									<label onClick={this.forgetPass}>esqueceu a senha?</label>
+								</Form.Group>
                                 <Form.Group className="button-group">
                                     <Button onClick={this.login} className="left" variant="primary">Entrar</Button>
                                     <Button onClick={this.openCad} className="right" bool="true" variant="secondary">Cadastrar</Button>
