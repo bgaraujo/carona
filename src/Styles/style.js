@@ -13,6 +13,16 @@ const useStyles = makeStyles({
         height: '100px !important',
         width: 'auto !important',
         color: '#097951'
+    },
+    Page:{
+      width:'100%',
+      padding:'10px',
+      textAlign: 'center',
+    },
+    GrigPage:{
+      width:'100%',
+      padding:'32px',
+      textAlign: 'center',
     }
 });
 
