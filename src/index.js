@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.css';
 import * as firebase from 'firebase';
-import './index.css';
+import { Provider } from 'react-redux'
+import { createStore }  from 'redux';
+import store from './Store/index'
 
-var firebaseConfig = {
+  var firebaseConfig = {
     apiKey: "AIzaSyD07ZYcEDpqI8QDKvV1bkZeL5C-L8EO5U0",
     authDomain: "carona-56fbc.firebaseapp.com",
     databaseURL: "https://carona-56fbc.firebaseio.com",
@@ -16,8 +17,14 @@ var firebaseConfig = {
     appId: "1:838515945848:web:d82082fdbcda9525"
   };
 
-firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 
-ReactDOM.render(<App firebase={firebase} />, document.getElementById('root'));
+  const Store = createStore(store)
 
-serviceWorker.unregister();
+  ReactDOM.render(
+    <Provider store={Store}>
+      <App firebase={firebase} />
+    </Provider>
+    , document.getElementById('root'));
+
+  serviceWorker.unregister();
